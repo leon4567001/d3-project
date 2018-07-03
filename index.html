@@ -1,0 +1,576 @@
+<html>  
+  <head>  
+        <meta charset="utf-8">  
+        <title>核心业务流程图</title>  
+  </head> 
+  <body>
+    	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>  		  
+        <script type="text/javascript">
+			   
+		var nodes = [ 	{ name: "客户需求"}, { name: "客户中长期需求预测" },//0/1
+						{ name: "客户订单" },{ name: "预测客户中长期零件需求" },//2/3
+						{ name: "客户中长期零件需求预测" },{ name: "客户日需求计划" },//4/5
+						{ name: "客户订单ob" },{ name: "客户交样需求"},//6/7
+
+						{ name: "物料仓储"}, { name: "物料及仓储策划" },//8/9
+						{ name: "搭建制造物料数据" },{ name: "MBOM" },//10/11
+						{ name: "PFEP报表" },{ name: "编制零件条码" },//12/13
+						{ name: "零件条码信息" },{ name: "划分库区库位"},//14/15
+						{ name: "现场布局图" },{ name: "库区分布图"},//16/17
+						{ name: "库位分布图lv4" },{ name: "线边库位分布图"},//18/19
+						{ name: "物料包装管理" },{ name: "包装ODS"},//20/21
+						{ name: "原材料包装协议" },{ name: "成品包装协议"},//22/23
+						{ name: "设置道口窗口时间" },{ name: "道口窗口时间跟踪表"},//24/25
+						{ name: "物料拉动设置" },{ name: "零件拉动信息表"},//26/27
+						{ name: "安全库存设置" },{ name: "零件库存跟踪"},//28/29
+						{ name: "物流模式管理" },{ name: "物流协议"},//30/31
+						{ name: "包装容器管理" },{ name: "料架车保养检查清单"},//32/33
+						{ name: "料架车每周点检记录" },{ name: "周转容器跟踪记录表"},//34/35
+
+						{ name: "物料需求计划v3" },//36
+						{ name: "物料滚动中长期预测"},{ name: "物料需求计划v4" },//37/38
+						{ name: "要货日计划"},{ name: "委外要货计划"},//39/40
+						{ name: "物料中长期预测计划" },//41
+						{ name: "物料需求计划ob"},//42
+						{ name: "物料要货计划" },{ name: "ASN"},//43/44
+						{ name: "原材料委外清单" },//45
+
+						{ name: "收货入库" },{ name: "库内操作" },//46/47
+						{ name: "盘点" },{ name: "委外出库" },//48/49
+						{ name: "出库上线" },//50
+
+						{ name: "供应商采购收货(非化工料)" },{ name: "供应商采购收货(化工料)" },//51/52
+						{ name: "委外收货" },//53
+						{ name: "委外直送" },{ name: "入库上架" },//54/55
+						{ name: "来料拒收" },{ name: "供应商退货" },//56/57
+
+						{ name: "收货记录" },{ name: "待质检任务" },{ name: "供应商发运批次记录表" },//58/59/60
+						{ name: "物料收货抽查记录表" },{ name: "批次跟踪表" },//61/62
+
+						{ name: "上架记录" },{ name: "拆解报废回用单" },//63/64
+
+						{ name: "DMR单" },{ name: "DMR线下追踪表" },//65/66
+
+						{ name: "退货记录" },//67
+
+						{ name: "化工料存储" },{ name: "料罐站切换" },{ name: "库内转移(非化工料)" },{ name: "成品定置定位和标识" },//68/69/70/71
+
+						{ name: "化工料库存记录" },{ name: "料罐站切换检查表" },//72/73
+						{ name: "化工料批次使用记录" },{ name: "库存转储" },//74/75
+						{ name: "物料库位编码规范" },//76
+
+						//48盘点
+						{ name: "盘点操作" },{ name: "盘点差异调整" },//77,78
+						//77盘点操作
+						{ name: "盘点零件清单" },{ name: "盘点指令" },{ name: "盘点记录" },//79-81
+						//78盘点差异调整
+						{ name: "差异调整指令" },{ name: "差异调整记录" },{ name: "月份盘点差异清单" },//82-84
+
+						//49委外出库
+						{ name: "委外出库(厂内物料)" },//85
+						//85委外出库(厂内物料)
+						{ name: "委外出库指令" },{ name: "出库记录" },{ name: "批次跟踪表" },//86,87,88
+
+						//50出库上线
+						{ name: "捡配&翻包" },{ name: "化工料批次管理" },{ name: "生产退料" },//89-91
+
+						//89捡配&翻包
+						{ name: "捡配任务" },{ name: "捡配记录" },//92,93,(88)
+
+						//90化工料批次管理-74
+						//91生产退料
+						{ name: "退料记录" },//94
+						//95生产制造
+						{ name: "生产制造" },//95
+						//95生产制造
+						{ name: "生产计划" },{ name: "生产排程" },{ name: "产前准备" },{ name: "生产跟踪&控制" },
+						{ name: "返工" },{ name: "生产完工" },//96,97,98,99,100,101
+						//96生产计划
+						{ name: "中长期产能计划" },{ name: "周生产计划" },{ name: "日生产计划" },//102,103,104
+						//97生产排程
+						{ name: "生产日排班" },{ name: "工单管理" },{ name: "换模计划" },//105,106,107
+						//105生产日排班
+						{ name: "工作岗位安排记录" },//108
+						//106工单管理
+						{ name: "xx产量表" },//109
+						//107换模计划
+						{ name: "换模计划ob" },{ name: "换模流转卡" },//110,111
+						//98产前准备
+						{ name: "人员准备" },{ name: "设备开机" },{ name: "工艺准备" },{ name: "工具准备" },//112/113/114/115
+						{ name: "原材料准备" },{ name: "模具准备" },//116/117
+						//112-108
+						//113设备开机
+						{ name: "开机检查表" },{ name: "电子称校准记录" },{ name: "xx生产线TPM检查表" },//118/119/120
+						{ name: "头枕工厂PIP输送带TPM周检查表" },{ name: "烘箱点检表" },//121/122
+						{ name: "预防性维护点检表(模温机补水箱）" },{ name: "升降台点检表" },{ name: "铲车点检表" },//123/124/125
+						{ name: "前道班组长每日检查记录表" },{ name: "后道班组长每日检查记录表" },//126/127
+						{ name: "打暗泡设备保养记录" },{ name: "暗泡修补岗位点检表" },{ name: "柔性线读码位置清洁登记" },//128/129/130
+						{ name: "能源挂锁巡检表" },{ name: "化学品分装罐点检表" },{ name: "24工位脱模剂管路开关机检查" },//131/132/133
+						{ name: "24工位脱模剂滤网清理记录" },{ name: "预防性维护点检表（ 蒸汽发生器及熨斗）" },//134/135
+						{ name: "烘道垃圾清理记录" },//136
+						//114
+						{ name: "常规参数检查表" },//137
+						//115工具准备
+						{ name: "工具领用记录" },{ name: "废旧手套收集数据表" },//138/139
+						{ name: "XX生产线劳防用品发放明细记录" },//140
+						//116原材料准备
+						{ name: "配料记录" },//141
+						//117模具准备-111
+						{ name: "模具点检卡" },{ name: "线上模具排列表" },{ name: "头枕模具点检卡" },//142/143/144
+
+						//99生产跟踪控制
+						{ name: "脱模剂用量控制" },{ name: "胶水用量控制" },{ name: "消音蜡用量控制" },//145/146/147
+						{ name: "人员操作状态跟踪" },{ name: "生产异常情况跟踪" },{ name: "生产安全检查" },//148/149/150
+						{ name: "其他辅料管理" },//151
+						//145
+						{ name: "脱模剂用量记录" },//152
+						//146
+						{ name: "胶水用量记录" },//153
+						//147
+						{ name: "消音蜡用量记录" },//154
+						//148人员操作状态跟踪
+						{ name: "操作报废记录" },{ name: "模架放空记录" },//155/156
+						//149生产异常情况跟踪
+						{ name: "模具报修单" },{ name: "设备报修单" },//157/158
+						//150生产安全检查
+						{ name: "生产安全检查记录" },{ name: "xx每班安全巡视表" },{ name: "能源锁定登记表" },//159/160/161
+						//151其他辅料管理
+						{ name: "硅胶和硅油使用记录表" },{ name: "每班硅胶修补数量记录表" },{ name: "万能清洗剂配置记录" },//162/163/164
+						{ name: "3c标签进出记录表" },{ name: "3c小标签领用记录" },{ name: "每日贴保护条统计表" },//165/166/167
+						{ name: "模具更换骨架定位卡片记录表" },//168
+
+						//100返工
+						{ name: "返工管理" },//169
+						//169
+						{ name: "返工记录" },{ name: "特定出货产品追溯记录表" },//170/171
+
+						//101生产完工
+						{ name: "生产报工" },{ name: "生产交接" },{ name: "设备关机" },//172/173/174
+						{ name: "废弃物管理" },//175
+						//172生产报工
+						{ name: "生产完工记录" },{ name: "生产报废记录" },{ name: "每日班后检查表" },//176/177/178
+						{ name: "当班暗泡统计数据登记表" },//179
+						//173
+						{ name: "交接班记录" },{ name: "生产日报" },{ name: "每日工作记录" },//180/181/182
+						//174
+						{ name: "关机检查记录表" },//183
+						//175
+						{ name: "边角料装运清单" },//184
+
+						{ name: "发运交付" },//185
+						//185发运交付
+						{ name: "成品发运" },{ name: "发运跟踪" },{ name: "承运商管理" },//186/187/188
+						{ name: "进出品关务处理" },//189
+						//186成品发运
+						{ name: "发运计划" },{ name: "发运排序" },{ name: "JIT配送上线" },//190/191/192
+						{ name: "非JIT配送上线" },{ name: "发运装车" },//193/194
+						//190发运计划
+						{ name: "发运计划ob" },{ name: "提货单" },//195/196
+						//191发运排序
+						{ name: "发运排序指令" },//197
+						//192JIT配送上线&193
+						{ name: "配送记录" },{ name: "批次跟踪" },//198/199
+						//194发运装车
+						{ name: "发运记录" },{ name: "尾数管理控制表" },//200/201
+
+						//187发运跟踪
+						{ name: "在途跟踪" },//202
+						//202
+						{ name: "发运跟踪记录" },{ name: "超额运费记录表" },//203/204
+
+						//188承运商管理
+						{ name: "承运商清单管理" },{ name: "车辆管理" },{ name: "承运商考核管理" },//205/206/207
+						//205
+						{ name: "承运商信息" },//208
+						//206
+						{ name: "运输车辆信息" },//209
+						//207
+						{ name: "承运商考核记录" },//210
+
+						//189进出品关务处理
+						{ name: "进出品关务处理V4" },//211
+						//211进出品关务处理V4
+						{ name: "出货装箱式样图" },{ name: "J03A J03K出货装箱式样图" },{ name: "核算2007" },//212/213/214
+						{ name: "出口海运空运托运书" },{ name: "出口装箱单发票，申报要素" },{ name: "货代对账表格" },//215/216/217
+						{ name: "Stay tracking list" },{ name: "3c委托书" },{ name: "进口记录表" },//218/219/220
+						{ name: "预归类新增导入模板" },{ name: "预归类延期导入模板" },{ name: "电子帐册备案导入模板" },//221/222/223
+						{ name: "归并关系导入模板" },{ name: "企业BOM导入模板" },{ name: "invoice 产地证" },//224/225//226
+						{ name: "装箱单产地证" },{ name: "优惠原产地证补充申请书 & 产品成本明细表3P" },{ name: "普惠制产地证明书申请书" },//227/228/229
+						{ name: "商品交易发布表" },{ name: "边角料无价值证明" },{ name: "废边角处置合同" },//230/231/232
+						{ name: "资质证明材料" },{ name: "边角料发票装箱单" },{ name: "申报销毁处置的加工贸易货物无法内销或退运的说明" },//233/234/235
+						{ name: "销毁处置方案" },{ name: "核销盘点库存报表-Trim" },{ name: "核销盘点库存报表-Foam" },//236/237/238
+						{ name: "延锋安道拓座椅有限公司保税料件" },{ name: "核销期进口数据统计--CIF加权平均价格核算表" },{ name: "核销盘亏、盘盈情况说明" },//239/240/241
+						{ name: "海关核销申报表" },{ name: "零星发运记录" },//242/243
+
+						{ name: "来料接收" },//244
+						{ name: "化工原料/外协件进料" },{ name: "模具接收" },//245/246
+						{ name: "PBU产能计划" },{ name: "工厂产能计划" },//247/248
+						{ name: "模具需求计划" },{ name: "生产计划变更记录表" },//249/250
+						{ name: "槽车收货跟踪一览表" },{ name: "化工料收料跟踪表" },//251/252
+						{ name: "BP（模具开发记录）" },{ name: "模具开发工艺技术要求单" },//253/254
+						{ name: "周排班计划" },//255
+
+						// { name: "来料检验" },//256
+						// { name: "化工原料/外协件进货检验" },{ name: "模具验收" },//257/258
+						// { name: "上升实验记录表" },{ name: "特殊水平零件清单" },{ name: "进料验证清单" },//259/260/261
+						// { name: "化工料进料验证清单" },{ name: "进货检验记录表" },{ name: "零部件封样件清单" },//262/263/264
+						// { name: "不合格品记录表" },{ name: "供应商材料拒收报告SMRR" },{ name: "供应商回收表" },//265/266/267
+						// { name: "进货检验记录表（化工料）" },{ name: "SAQP表" },{ name: "PPAP包（供应商）" },//268/269/270
+						// { name: "Containment cost" },{ name: "供应商质量问题PR&R" },{ name: "MQR1" },//271/272/273
+						// { name: "MQR2" },{ name: "供应商一级遏制通知书" },{ name: "供应商二级遏制通知书" },//274/275/276
+						// { name: "8D问题分析报告" },{ name: "MQR3" },{ name: "问题清单" },//277/278/279
+						// { name: "供应商审核计划" },{ name: "供应商审核报告" },{ name: "供应商访问报告" },//280/281/282
+						// { name: "质量附加协议" },{ name: "SPPM" },{ name: "供应商年度型式试验跟踪表" },//283/284/285
+						// { name: "供应商型式试验报告" },{ name: "模具预验收表" },{ name: "供应商自检报告" },//286/287/288
+						// { name: "供应商关键尺寸检查表" },{ name: "工艺模具验收表" },{ name: "试制记录" },//289/290/291
+						// { name: "卡板尺寸检查报告" },{ name: "硬度报告" },{ name: "尺寸检查记录" },//292/293/294
+						// { name: "模具问题清单及整改结果" },{ name: "零件履历表" },{ name: "模具供应商综合表现" },//295/296/297
+						// { name: "模具履历表" },//298
+
+						{ name: "来料存储" },//256
+						{ name: "化工原料/外协件存储" },{ name: "模具存储" },//257/258
+						{ name: "发泡车间化工料使用有效期汇总表" },{ name: "模具清单" },{ name: "固定资产清单" },//259/260/261
+						{ name: "模具履历表" },//262
+
+						{ name: "升降台点检" },{ name: "工艺交接班记录表" },{ name: "质量交接班记录" },//263/264/265
+
+						];
+					 
+		var edges = [  { source : 0  , target: 1 } , { source : 0  , target: 2 } ,
+					   { source : 1  , target: 3 } , { source : 3  , target: 4 } ,
+					   { source : 3  , target: 5 } , { source : 2  , target: 6 } ,
+					   {source:2,target:7},
+
+					   { source : 8  , target: 9 } , { source : 9  , target: 10 } ,
+					   { source : 9  , target: 13 } , { source : 9  , target: 15 } ,
+					   { source : 9  , target: 20 } , { source : 9  , target: 24 } ,
+					   { source : 9  , target: 26 } , { source : 9  , target: 28 } ,
+					   { source : 9  , target: 30 } , { source : 9  , target: 32 } ,
+					   { source : 10  , target: 11 } , { source : 10  , target: 12 } ,
+					   { source : 13  , target: 14 } , { source : 15  , target: 16 } ,
+					   { source : 15  , target: 17 } , { source : 15  , target: 18 } ,
+					   { source : 15  , target: 19 } , { source : 20  , target: 21 } ,
+					   { source : 20  , target: 22 } , { source : 20  , target: 23 } ,
+					   { source : 24  , target: 25 } , { source : 26  , target: 27 } ,
+					   { source : 28  , target: 29 } , { source : 30  , target: 31 } ,
+					   { source : 32  , target: 33 } , { source : 32  , target: 34 } ,
+					   { source : 32  , target: 35 } ,
+
+					   { source : 36  , target: 37 } , { source : 36  , target: 38 } ,
+					   { source : 36  , target: 39 } , { source : 36  , target: 40 } ,
+					   { source : 37  , target: 41 } , { source : 38  , target: 42 } ,
+					   { source : 39  , target: 43 } , { source : 39  , target: 44 } ,
+					   { source : 40  , target: 43 } , { source : 40  , target: 45 } ,
+					   { source : 8  , target: 36 } ,
+
+					   { source : 8  , target: 46 } ,{ source : 8  , target: 47 } ,{ source : 8  , target: 48 } ,
+					   { source : 8  , target: 49 } ,{ source : 8  , target: 50 } ,
+
+					   { source : 46  , target: 51 } ,{ source : 46  , target: 52 } ,{ source : 46  , target: 53 } ,
+					   { source : 46  , target: 54 } ,{ source : 46  , target: 55 } ,{ source : 46  , target: 56 } ,
+					   { source : 46  , target: 57 } ,
+
+					   { source : 51  , target: 58 } ,{ source : 51  , target: 59 } ,{ source : 51  , target: 60 } ,
+					   { source : 51  , target: 61 } ,{ source : 51  , target: 62 } ,
+
+					   { source : 52  , target: 58 } ,{ source : 52  , target: 59 } ,
+
+					   { source : 53  , target: 58 } ,{ source : 53  , target: 59 } ,
+
+					   { source : 54  , target: 58 } ,
+
+					   { source : 55  , target: 62 } ,{ source : 55  , target: 63 } ,{ source : 55  , target: 64 } ,
+
+					   { source : 56  , target: 65 } ,{ source : 56  , target: 66 } ,
+
+					   { source : 57  , target: 67 } ,
+
+					   { source : 47  , target: 68 } ,{ source : 47  , target: 69 } ,{ source : 47  , target: 70 } ,
+					   { source : 47  , target: 71 } ,
+
+					   { source : 68  , target: 72 } ,{ source : 69  , target: 73 } ,{ source : 69  , target: 74 } ,
+					   { source : 70  , target: 75 } ,{ source : 71  , target: 76 } ,
+
+					   { source : 48  , target: 77 } ,{ source : 48  , target: 78 } ,
+
+					   { source : 77  , target: 79 } ,{ source : 77  , target: 80 } ,{ source : 77  , target: 81 } ,
+
+					   { source : 78  , target: 82 } ,{ source : 78  , target: 83 } ,{ source : 78  , target: 84 } ,
+
+					   { source : 49  , target: 85 } ,
+
+					   { source : 85  , target: 86 } ,{ source : 85  , target: 87 } ,{ source : 85  , target: 88 } ,
+
+					   { source : 50  , target: 89 } ,{ source : 50  , target: 90 } ,{ source : 50  , target: 91 } ,
+
+					   { source : 89  , target: 92 } ,{ source : 89  , target: 93 } ,{ source : 89  , target: 88 } ,
+
+					   { source : 90  , target: 74 } ,
+
+					   { source : 91  , target: 94 } ,
+
+					   { source : 95  , target: 96 } ,{ source : 95  , target: 97 } ,{ source : 95  , target: 98 } ,
+					   { source : 95  , target: 99 } ,{ source : 95  , target: 100 } ,{ source : 95  , target: 101 } ,
+
+					   { source : 96  , target: 102 } ,{ source : 96  , target: 103 } ,{ source : 96  , target: 104 } ,
+
+					   { source : 97  , target: 105 } ,{ source : 97  , target: 106 } ,{ source : 97  , target: 107 } ,
+
+					   { source : 105  , target: 108 } ,
+
+					   { source : 106  , target: 109 } ,
+
+					   { source : 107  , target: 110 } ,{ source : 107  , target: 111 } ,
+
+					   { source : 98  , target: 112} ,{ source : 98  , target: 113 } ,{ source : 98  , target: 114 } ,
+					   { source : 98  , target: 115 } ,{ source : 98  , target: 116 } ,{ source : 98  , target: 117 } ,
+
+					   { source : 112  , target: 108 } ,
+
+					   { source : 113  , target: 118 } ,{ source : 113  , target: 119 } ,{ source : 113  , target: 120 } ,
+					   { source : 113  , target: 121 } ,{ source : 113  , target: 122 } ,{ source : 113  , target: 123 } ,
+					   { source : 113  , target: 124 } ,{ source : 113  , target: 125 } ,{ source : 113  , target: 126 } ,
+					   { source : 113  , target: 127 } ,{ source : 113  , target: 128 } ,{ source : 113  , target: 129 } ,
+					   { source : 113  , target: 130 } ,{ source : 113  , target: 131 } ,{ source : 113  , target: 132 } ,
+					   { source : 113  , target: 133 } ,{ source : 113  , target: 134 } ,{ source : 113  , target: 135 } ,
+					   { source : 113  , target: 136 } ,
+
+					   { source : 114  , target: 137 } ,
+
+					   { source : 115  , target: 138 } ,{ source : 115  , target: 139 } ,{ source : 115  , target: 140 } ,
+
+					   { source : 116  , target: 141 } ,
+
+					   { source : 117  , target: 111 } ,{ source : 117  , target: 142 } ,{ source : 117  , target: 143 } ,
+					   { source : 117  , target: 144 } ,
+
+					   { source : 99  , target: 145 } ,{ source : 99  , target: 146 } ,{ source : 99  , target: 147 } ,
+					   { source : 99  , target: 148 } ,{ source : 99  , target: 149 } ,{ source : 99  , target: 150 } ,
+					   { source : 99  , target: 151 } ,
+
+					   { source : 145  , target: 152 } ,{ source : 146  , target: 153 } ,{ source : 147  , target: 154 } ,
+
+					   { source : 148  , target: 155 } ,{ source : 148  , target: 156 } ,
+
+					   { source : 149  , target: 157 } ,{ source : 149  , target: 158 } ,
+
+					   { source : 150  , target: 159 } ,{ source : 150  , target: 160 } ,{ source : 150  , target: 161 } ,
+
+					   { source : 151  , target: 162 } ,{ source : 151  , target: 163 } ,{ source : 151  , target: 164 } ,
+					   { source : 151  , target: 165 } ,{ source : 151  , target: 166 } ,{ source : 151  , target: 167 } ,
+					   { source : 151  , target: 168 } ,
+
+					   { source : 100  , target: 169 } ,
+					   { source : 169  , target: 170 } ,{ source : 169  , target: 171 } ,
+
+					   { source : 101  , target: 172 } ,{ source : 101  , target: 173 } ,{ source : 101  , target: 174 } ,
+					   { source : 101  , target: 175 } ,
+
+					   { source : 172  , target: 176 } ,{ source : 172  , target: 177 } ,{ source : 172  , target: 178 } ,
+					   { source : 172  , target: 179 } ,
+
+					   { source : 173  , target: 180 } ,{ source : 173  , target: 181 } ,{ source : 173  , target: 182 } ,
+
+					   { source : 174  , target: 183 } ,
+
+					   { source : 175  , target: 184 } ,
+					   { source : 185  , target: 186 } ,{ source : 185  , target: 187 } ,{ source : 185  , target: 188 } ,
+					   { source : 185  , target: 189 } ,
+
+					   { source : 186  , target: 190 } ,{ source : 186  , target: 191 } ,{ source : 186  , target: 192 } ,
+					   { source : 186  , target: 193 } ,{ source : 186  , target: 194 } ,
+
+					   { source : 190  , target: 195 } ,{ source : 190  , target: 196 } ,
+					   { source : 191  , target: 197 } ,
+					   { source : 192  , target: 198 } ,{ source : 192  , target: 199 } ,
+					   { source : 193  , target: 198 } ,{ source : 193  , target: 199 } ,
+					   { source : 194  , target: 200 } ,{ source : 194  , target: 201 } ,
+
+					   { source : 187  , target: 202 } ,
+					   { source : 202  , target: 203 } ,{ source : 202  , target: 204 } ,
+
+					   { source : 188  , target: 205 } ,{ source : 188  , target: 206 } ,{ source : 188  , target: 207 } ,
+					   { source : 205  , target: 208 } ,{ source : 206  , target: 209 } ,{ source : 207  , target: 210 } ,
+
+					   { source : 189  , target: 211 } ,
+					   { source : 211  , target: 212 } ,{ source : 211  , target: 213 } ,{ source : 211  , target: 214 } ,
+					   { source : 211  , target: 215 } ,{ source : 211  , target: 216 } ,{ source : 211  , target: 217 } ,
+					   { source : 211  , target: 218 } ,{ source : 211  , target: 219 } ,{ source : 211  , target: 220 } ,
+					   { source : 211  , target: 221 } ,{ source : 211  , target: 222 } ,{ source : 211  , target: 223 } ,
+					   { source : 211  , target: 224 } ,{ source : 211  , target: 225 } ,{ source : 211  , target: 226 } ,
+					   { source : 211  , target: 227 } ,{ source : 211  , target: 228 } ,{ source : 211  , target: 229 } ,
+					   { source : 211  , target: 230 } ,{ source : 211  , target: 231 } ,{ source : 211  , target: 232 } ,
+					   { source : 211  , target: 233 } ,{ source : 211  , target: 234 } ,{ source : 211  , target: 235 } ,
+					   { source : 211  , target: 236 } ,{ source : 211  , target: 237 } ,{ source : 211  , target: 238 } ,
+					   { source : 211  , target: 239 } ,{ source : 211  , target: 240 } ,{ source : 211  , target: 241 } ,
+					   { source : 211  , target: 242 } ,{ source : 211  , target: 243} ,
+
+					   { source : 11  , target: 23} ,
+					   { source : 11  , target: 12} ,
+					   { source : 14  , target: 176} ,
+					   { source : 17  , target: 102} ,
+					   { source : 27  , target: 104} ,
+					   { source : 27  , target: 176} ,
+					   { source : 31  , target: 102} ,
+					   { source : 34  , target: 104} ,
+					   { source : 15  , target: 104} ,
+					   { source : 41  , target: 176} ,
+					   { source : 42  , target: 5} ,
+					   { source : 42  , target: 176} ,
+					   { source : 42  , target: 7} ,
+					   { source : 43  , target: 104} ,
+					   { source : 44  , target: 7} ,
+					   { source : 80  , target: 104} ,
+					   { source : 86  , target: 104} ,
+					   { source : 86  , target: 103} ,
+					   { source : 94  , target: 176} ,
+					   { source : 104  , target: 2} ,
+					   { source : 11  , target: 145} ,
+					   { source : 11  , target: 146} ,
+					   { source : 11  , target: 147} ,
+					   { source : 190  , target: 2} ,
+					   { source : 196  , target: 2} ,
+					   { source : 198  , target: 5} ,
+					   { source : 200  , target: 5} ,
+					   { source : 204  , target: 5} ,
+
+					   { source : 244  , target: 245} ,{ source : 244  , target: 246} ,
+					   { source : 245  , target: 4} ,{ source : 245  , target: 5} ,{ source : 245  , target: 2} ,
+					   { source : 245  , target: 7} ,{ source : 245  , target: 11} ,{ source : 245  , target: 12} ,
+					   { source : 245  , target: 22} ,{ source : 245  , target: 25} ,{ source : 245  , target: 27} ,
+					   { source : 245  , target: 31} ,{ source : 245  , target: 29} ,{ source : 245  , target: 41} ,
+					   { source : 245  , target: 36} ,{ source : 245  , target: 43} ,{ source : 245  , target: 44} ,
+					   { source : 245  , target: 45} ,{ source : 245  , target: 59} ,{ source : 245  , target: 60} ,
+					   { source : 245  , target: 61} ,{ source : 245  , target: 62} ,{ source : 245  , target: 58} ,
+					   { source : 245  , target: 63} ,{ source : 245  , target: 64} ,{ source : 245  , target: 65} ,
+					   { source : 245  , target: 66} ,{ source : 245  , target: 67} ,{ source : 245  , target: 247} ,
+					   { source : 245  , target: 248} ,{ source : 245  , target: 249} ,{ source : 245  , target: 255} ,
+					   { source : 245  , target: 104} ,{ source : 245  , target: 250} ,{ source : 245  , target: 251} ,
+					   { source : 245  , target: 252}, 					   
+					   { source : 246  , target: 253} ,{ source : 246  , target: 254} ,
+
+
+					   { source : 256  , target: 257} ,{ source : 256  , target: 258} ,
+					   { source : 257  , target: 72} ,{ source : 257  , target: 75} ,{ source : 257  , target: 76} ,
+					   { source : 257  , target: 259} ,{ source : 257  , target: 74} ,
+					   { source : 258  , target: 260} ,{ source : 258  , target: 261} ,{ source : 258  , target: 262} ,
+
+					   { source : 114  , target: 74} ,{ source : 114  , target: 118} ,{ source : 114  , target: 119} ,
+					   { source : 114  , target: 120} ,{ source : 114  , target: 123} ,{ source : 114  , target: 263} ,
+					   { source : 114  , target: 125} ,{ source : 114  , target: 131} ,{ source : 114  , target: 132} ,
+					   { source : 114  , target: 137} ,{ source : 114  , target: 180} ,{ source : 114  , target: 181} ,
+					   { source : 114  , target: 183} ,{ source : 258  , target: 264} ,{ source : 258  , target: 265} ,
+					   ];	
+		
+		var width = 1900;
+		var height = 1150;
+		
+		
+		var svg = d3.select("body")
+					.append("svg")
+					.attr("width",width)
+					.attr("height",height);
+		
+		var force = d3.layout.force()
+				.nodes(nodes)		//指定节点数组
+				.links(edges)		//指定连线数组
+				.size([width,height])	//指定范围
+				.linkDistance(80)	//指定连线长度
+				.charge(-200)	//相互之间的作用力,decide the distance between circles
+				.on("tick",tick);
+		var drag = force.drag()
+						.on("dragstart",dragstart);
+
+		force.start();	//开始作用
+
+		console.log(nodes);
+		console.log(edges);
+		
+		//添加连线		
+		var svg_edges = svg.selectAll("line")
+							.data(edges)
+							.enter()
+							.append("line")
+							.style("stroke","#ccc")
+							.style("stroke-width",2)
+							.on("mouseover",function(d,i){
+            					d3.select(this)
+                				.style("stroke","#FF0000");
+        						})
+        					.on("mouseout",function(d,i){
+            					d3.select(this)
+                				.style("stroke","#ccc");
+        					});
+		
+		var color = d3.scale.category20();
+				
+		//添加节点			
+		var svg_nodes = svg.selectAll("circle")
+							.data(nodes)
+							.enter()
+							.append("circle")
+							//.attr("r",5)//set the node round
+							.style("fill",function(d,i){
+								return color(i);
+							})
+							.on("dblclick", dblclick)
+							.call(force.drag);	//使得节点能够拖动
+
+		//reset the node's round  or i==0 or i==8 or i==95
+		svg_nodes.attr("r",function(d,i){
+			if (i==185||i==0||i==8||i==95||i==244) {
+				return 15;
+			}else{
+				return 8;
+			};
+		});
+
+
+		//添加描述节点的文字
+		var svg_texts = svg.selectAll("text")
+							.data(nodes)
+							.enter()
+							.append("text")
+							.style("fill", "black")
+							.attr("dx", 8)
+							.attr("dy", -2)
+							.attr("font-size","6px")
+							.text(function(d){
+								return d.name;
+							});
+					
+
+		 function tick(){	//对于每一个时间间隔
+		
+			 //更新连线坐标
+			 svg_edges.attr("x1",function(d){ return d.source.x; })
+			 		  .attr("y1",function(d){ return d.source.y; })
+			 		  .attr("x2",function(d){ return d.target.x; })
+			 		  .attr("y2",function(d){ return d.target.y; });
+			 
+			 //更新节点坐标
+			 svg_nodes.attr("cx",function(d){ return d.x; })
+			 		  .attr("cy",function(d){ return d.y; });
+
+			 //更新文字坐标
+			 svg_texts.attr("x", function(d){ return d.x; })
+			 	      .attr("y", function(d){ return d.y; });
+		}
+
+		function dblclick(d,i) {
+			if (i==185||i==0||i==8||i==95) {//||i==244
+				var name = d.name;
+  				window.open(encodeURI("tree/"+name+'.html?name='+name),name);//open a new page and send the param name as title
+			}else{
+				window.open("tree/error.html");
+			};
+  			//d3.select(this).classed(d.fixed = false);
+  			
+		}		
+
+		function dragstart(d) {
+  			d3.select(this).classed(d.fixed = true);
+		}
+        </script>  		
+    </body>  
+</html>  
