@@ -1,0 +1,20 @@
+g.type-S > rect { 
+    fill: #00ffd0; 
+}   
+
+text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
+    font-size: 14px;
+    font-weight: 800;
+}   
+
+.node rect {
+    stroke: #999;
+    fill: #fff;
+    stroke - width: 1.5px;
+}   
+
+.edgePath path {
+    stroke: #333;
+    stroke-width: 1.5px;
+}
