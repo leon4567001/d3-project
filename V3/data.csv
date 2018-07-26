@@ -1,0 +1,14 @@
+﻿source,target,type
+根节点A,分枝结点1,suit
+根节点B,分枝结点2,suit
+根节点B,分枝结点3,suit
+根节点A,分枝结点4,suit
+根节点B,分枝结点5,suit
+根节点A,分枝结点6,suit
+根节点A,根节点B,suit
+分枝结点1,叶子1,suit
+分枝结点1,叶子2,suit
+分枝结点1,叶子3,suit
+分枝结点2,叶子4,suit
+分枝结点2,叶子5,suit
+叶子1,叶子4,resolved

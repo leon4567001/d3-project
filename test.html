@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>test</title>
-	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="http://d3js.org/d3.v3.js"></script>
 	<style>
 		text {
 		  font: 12px Microsoft YaHei;
@@ -15,8 +15,9 @@
 <body>
 	<script type="text/javascript">
 	var nodes = {};
-	var edges = [{source: "客户需求", target: "客户中长期需求预测", type: "arrow"},
+	var edges = [{source: "客户需求", target: "客户中长期需求预测", type: "arrow","x": 469, "y": 410},
 				 {source: "用户需求", target: "用户中长期需求预测", type: "edges"},
+				 {source: "300", target: "400", type: "edges"},
 	];
 
 	edges.forEach(function(link) {
@@ -86,6 +87,8 @@
 							.data(force.nodes())
 							.enter()
 							.append("circle")
+							.attr("cx",300)
+							.attr("cy",400)
 							//.attr("r",5)//set the node round
 							.style("fill",function(d,i){
 								return color(i);
@@ -95,12 +98,6 @@
 
 		//reset the node's round  or i==0 or i==8 or i==95
 		svg_nodes.attr("r",function(d,i){
-			
-			// if (d.name=="客户需求"){
-			// 	return 15;
-			// }else{
-			// 	return 8;
-			// };
 			switch(d.name){
 				case "客户需求":
 				return 15;
@@ -109,7 +106,16 @@
 				return 8;
 			}
 		});
-
+		// svg_nodes.attr("cx",300)
+		// .attr("cy",400);
+		// .attr("fixed",function(d,i){
+			
+		// 	switch(d.name){
+		// 		case "客户需求":
+		// 		return true;
+		// 	}
+		// });
+		// .classed(d.fixed = false);
 
 		//添加描述节点的文字
 		var svg_texts = svg.selectAll("text")
@@ -119,8 +125,6 @@
 							.style("fill", "black")
 							.attr("dx", 8)
 							.attr("dy", -2)
-							// .attr("font-size","8px")
-							// .attr("font-weight","800")
 							.text(function(d){
 								return d.name;
 							});
@@ -135,8 +139,8 @@
 			 		  .attr("y2",function(d){ return d.target.y; });
 			 
 			 //更新节点坐标
-			 svg_nodes.attr("cx",function(d){ return d.x; })
-			 		  .attr("cy",function(d){ return d.y; });
+			 svg_nodes.attr("cx",function(d){ return d.x;})
+			 		  .attr("cy",function(d){ return d.y;});
 
 			 //更新文字坐标
 			 svg_texts.attr("x", function(d){ return d.x; })

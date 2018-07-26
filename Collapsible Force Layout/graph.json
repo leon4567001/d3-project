@@ -1,0 +1,35 @@
+{
+  "name": "根节点",
+  "children": [
+    {
+      "name": "分枝结点A",
+      "children": [
+        {
+          "name": "分支A1",
+          "children": [
+            {"name": "叶子A11", "size": 3938},
+            {"name": "叶子A12", "size": 3812},
+            {"name": "叶子A13", "size": 6714},
+            {"name": "叶子A14", "size": 743}
+          ]
+        },
+        {
+          "name": "分支A2",
+          "children": [
+            {"name": "叶子A21", "size": 3534},
+            {"name": "叶子A22", "size": 5731},
+            {"name": "叶子A23", "size": 7840},
+            {"name": "叶子A24", "size": 5914},
+            {"name": "叶子A25", "size": 3416}
+          ]
+        },
+        {
+          "name": "分支A3",
+          "children": [
+            {"name": "叶子A31", "size": 7074}
+          ]
+        }
+      ]
+    }
+  ]
+}
