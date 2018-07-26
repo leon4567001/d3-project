@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<head>
+    <title>newforce</title>
+</head>
 <style>
 
     .link {
@@ -21,11 +24,11 @@
     }
 
 
-    circle {
-        fill: #ccc;
-        stroke: #333;
-        stroke-width: 1.5px;
-    }
+    /*circle {*/
+        /*fill: #ccc;*/
+        /*stroke: #333;*/
+        /*stroke-width: 1.5px;*/
+    /*}*/
 
     text {
         font: 10px sans-serif;
@@ -37,6 +40,24 @@
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
+
+        function GetRequest() {
+            var url =decodeURI(decodeURI(location.search)); //获取url中"?"符后的字串，使用了两次
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for(var i = 0; i < strs.length; i ++) {
+                    theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+
+    var Request = new Object();
+    Request = GetRequest();
+    var title;
+    title = Request["name"];
 
     d3.csv("data.csv", function(error, data) {
         if (error) throw error;
@@ -106,25 +127,22 @@
                         return 6;
                 }
             })
-            .on("click",function(){
-                d3.select(this).style("fill","#FF0000");
-            })
+            // .on("click",function(){
+            //     d3.select(this).style("fill","#FF0000");
+            // })
+            .on("dblclick",dblclick)
             .call(force.drag);
-        // circle.style("stroke","#333")
-        //       .style("stroke-width",1.5)
-        //       .style("fill",function (d) {
-        //             switch(d.name){
-        //                 case "根节点A":
-        //                     return "FF0000";
-        //                     // break;
-        //                 case "根节点B":
-        //                     return "FF0000";
-        //                     // break;
-        //                 default:
-        //                     return "#ccc";
-        //             }
-        //         }
-        //     );
+        circle.style("stroke","#333")
+              .style("stroke-width",1.5)
+              .style("fill",function (d) {
+                    switch(d.name){
+                        case title:
+                            return "#FF0000";
+                        default:
+                            return "#ccc";
+                    }
+                }
+            );
 
         var text = svg.append("g").selectAll("text")
             .data(force.nodes())
@@ -153,6 +171,12 @@
 
         function dragstart(d) {
             d3.select(this).classed(d.fixed = true);
+        }
+        function dblclick(d) {
+            if (d.name=="根节点A"){
+                var name = d.name;
+                window.open(name+'.html');//open a new page and send the param name as title
+            }
         }
         //end
     });

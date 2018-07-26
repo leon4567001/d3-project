@@ -87,7 +87,8 @@
             .call(force.drag);
 
         nodeEnter.append("circle")
-            .attr("r", function(d) { return Math.sqrt(d.size) / 10 || 4.5; });
+            .attr("r", 10);
+            // .attr("r", function(d) { return Math.sqrt(d.size) / 10 || 4.5; });
 
         nodeEnter.append("text")
             .attr("dy", ".35em")
@@ -107,8 +108,8 @@
     }
 
     function color(d) {
-        return d._children ? "#3182bd" // collapsed package
-            : d.children ? "#c6dbef" // expanded package
+        return d._children ? "#FF0000" // collapsed package
+            : d.children ? "#ccc" // expanded package
                 : "#fd8d3c"; // leaf node
     }
 
