@@ -33,6 +33,7 @@
     text {
         font: 10px sans-serif;
         pointer-events: none;
+        font-weight: 800;
         text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
     }
 
@@ -59,7 +60,7 @@
     var title;
     title = Request["name"];
 
-    d3.csv("data.csv", function(error, data) {
+    d3.csv("newdata.csv", function(error, data) {
         if (error) throw error;
         console.log(data);
 
@@ -74,15 +75,29 @@
             link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
         });
 
-        var width = 960,
-            height = 500;
+        var width = 7400,
+            height = 4200;
+
+        nodes = d3.values(nodes);
+
+        //绑定相连节点
+        for(var i = 0; i < nodes.length; i++){
+            for(var j = 0; j < links.length; j++){
+                if(nodes[i].name == links[j].source.name){
+                    nodes[i][links[j].target.name] = {name: links[j].target.name};
+                }
+                if(nodes[i].name == links[j].target.name){
+                    nodes[i][links[j].source.name] = {name: links[j].source.name};
+                }
+            }
+        }
 
         var force = d3.layout.force()
-            .nodes(d3.values(nodes))
+            .nodes(nodes)
             .links(links)
             .size([width, height])
             .linkDistance(60)
-            .charge(-300)
+            .charge(-2000)
             .on("tick", tick);
 
         var drag = force.drag()
@@ -119,17 +134,114 @@
             .enter().append("circle")
             .attr("r", function (d) {
                 switch(d.name){
-                    case "根节点A":
+                    case "客户需求":
                         return 10;
-                    case "根节点B":
+                    case "来料接收":
+                        return 10;
+                    case "来料检验":
+                        return 10;
+                    case "来料存储":
+                        return 10;
+                    case "化工料配置":
+                        return 10;
+                    case "化工料抽料":
+                        return 10;
+                    case "日料罐储存":
+                        return 10;
+                    case "生产准备":
+                        return 10;
+                    case "清模":
+                        return 10;
+                    case "喷脱模剂":
+                        return 10;
+                    case "外协件放置":
+                        return 10;
+                    case "浇注":
+                        return 10;
+                    case "熟化":
+                        return 10;
+                    case "起模":
+                        return 10;
+                    case "开孔":
+                        return 10;
+                    case "首检":
+                        return 10;
+                    case "后道处理":
+                        return 10;
+                    case "过程检查":
+                        return 10;
+                    case "上悬挂链料架车摆放":
+                        return 10;
+                    case "后熟化":
+                        return 10;
+                    case "终检":
+                        return 10;
+                    case "产品特性检查":
+                        return 10;
+                    case "成品包装":
+                        return 10;
+                    case "成品审核":
+                        return 10;
+                    case "成品储存":
+                        return 10;
+                    case "发运":
                         return 10;
                     default:
                         return 6;
                 }
             })
-            // .on("click",function(){
-            //     d3.select(this).style("fill","#FF0000");
-            // })
+
+
+            .on("mouseover",function(d,i){
+                //隐藏其它连线上文字
+                // text.style("fill-opacity",function(edge){
+                //     // console.log(edge.source);
+                //     // console.log(edge.target);
+                //     if( edge.source === d || edge.target === d ){
+                //         return 1;
+                //     }
+                //     if( edge.source !== d && edge.target !== d ){
+                //         return 0;
+                //     }
+                // })
+                //其它节点亮度调低
+                circle.style("opacity",function(edge){
+                    var v = d.name;
+                    if( edge.name === v || (edge[v] !== undefined &&  edge[v].name === v)){
+                        return 1;
+                    }else{
+                        return 0.2;
+                    }
+                })
+                //其他连先亮度调低
+                path.style("opacity",function(edge){
+                    if( edge.source === d || edge.target === d ){
+                        return 1;
+                    }
+                    if( edge.source !== d && edge.target !== d ){
+                        return 0.2;
+                    }
+                })
+                //其他节点文字亮度调低
+                text.style("opacity",function(edge){
+                    var v = d.name;
+                    if( edge.name === v || (edge[v] !== undefined &&  edge[v].name === v)){
+                        return 1;
+                    }else{
+                        return 0.2;
+                    }
+                })
+
+            })
+            .on("mouseout",function(d,i){
+                //显示连线上的文字
+                text.style("fill-opacity",1);
+                path.style("opacity",1);
+                circle.style("opacity",1);
+                text.style("opacity",1);
+            })
+
+
             .on("dblclick",dblclick)
             .call(force.drag);
         circle.style("stroke","#333")
@@ -173,7 +285,7 @@
             d3.select(this).classed(d.fixed = true);
         }
         function dblclick(d) {
-            if (d.name=="根节点A"){
+            if (d.name==="根节点A"){
                 var name = d.name;
                 window.open(name+'.html');//open a new page and send the param name as title
             }
