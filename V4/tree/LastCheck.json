@@ -1,0 +1,30 @@
+{"name":"终检",
+"children":[
+  {"name":"终检记录返修返工",
+  "children":[
+    {"name":"返工记录","type":"MES"},
+    {"name":"生产完工记录","type":"MES"},
+    {"name":"生产报废记录","type":"MES"},
+    {"name":"scrap","type":"TMS"},
+    {"name":"发泡改进信息交流表","type":"MES"},
+    {"name":"问题清单","type":"MES"},
+    {"name":"质量警告","type":"MES"},
+    {"name":"8D状态跟踪表","type":"TMS"},
+    {"name":"8D问题分析报告","type":"TMS"},
+    {"name":"培训记录","type":"MES"},
+    {"name":"IPPM","type":"MES"},
+    {"name":"客户抱怨记录（问题清单）","type":"TMS"},
+    {"name":"CPPM","type":"TMS"},
+    {"name":"RPPM","type":"TMS"},
+    {"name":"PFMEA-CP评审工作表","type":"maximo"},
+    {"name":"不合格品遏制清单","type":"TMS"},
+    {"name":"遏制成本","type":"TMS"},
+    {"name":"全检记录表","type":"MES"},
+    {"name":"拆解报废单","type":"MES"},
+    {"name":"不合格品记录表","type":"MES"},
+    {"name":"ICPPM","type":"TMS"},
+    {"name":"IRPPM","type":"TMS"},
+    {"name":"COPQ数据","type":"TMS"},
+    {"name":"检测报告","type":""}
+  ]}
+]}

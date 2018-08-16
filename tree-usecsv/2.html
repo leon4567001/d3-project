@@ -47,6 +47,8 @@ d3.csv("2.csv", function(error, data) {
   var root = stratify(data)
       .sort(function(a, b) { return (a.height - b.height) || a.id.localeCompare(b.id); });
 
+  console.log(root);
+
   var link = g.selectAll(".link")
     .data(tree(root).links())
     .enter().append("path")
@@ -60,8 +62,8 @@ d3.csv("2.csv", function(error, data) {
     .enter().append("g")
       .attr("class", function(d) { return "node" + (d.children ? " node--internal" : " node--leaf"); })
       .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
-  console.log(node);
-  console.log(link);
+  // console.log(node);
+  // console.log(link);
   node.append("circle")
       .attr("r", 2.5);
 

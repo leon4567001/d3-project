@@ -1,0 +1,12 @@
+{"name":"过程检查",
+"children":[
+  {"name":"过程检查",
+  "children":[
+    {"name":"过程检查记录表","type":"MES"},
+    {"name":"不合格品记录表","type":"MES"},
+    {"name":"现场质量反馈表","type":"MES"},
+    {"name":"待处理记录表","type":"MES"},
+    {"name":"分层审核表","type":"TMS"},
+    {"name":"晨会问题清单","type":"MES"}
+  ]}
+]}

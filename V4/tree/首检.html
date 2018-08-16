@@ -14,6 +14,7 @@
 
     .node text {
         font: 10px sans-serif;
+        font-weight: 800;
     }
 
     .link {
@@ -25,7 +26,20 @@
 </style>
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-<!--<script src="http://d3js.org/d3.v4.min.js"></script>-->
+<h1>树状图:</h1>
+<hr>
+<div>
+<P>图例说明:</P>
+    <ul>
+        <li style="color:#CD0000">MES</li>
+        <li style="color:#F0E68C">SAP</li>
+        <LI style="color:#FF7F50">TMS</LI>
+        <LI style="color:#9932CC">AMP</LI>
+        <LI style="color:#00EE00">WMS</LI>
+        <li style="color:#8B7500">WMS&SAP</li>
+        <li style="color:#607B8B">maximo</li>
+    </ul>
+</div>
 <script>
 
     var margin = {top: 20, right: 120, bottom: 20, left: 120},
@@ -58,9 +72,9 @@
     //     console.log(root);
     // });
 
-    d3.json("flare.json", function(error, flare) {
+    d3.json("FirstCheck.json", function(error, flare) {
         if (error) throw error;
-    console.log(flare);
+        console.log(flare);
         root = flare;
         root.x0 = height / 2;
         root.y0 = 0;
@@ -100,8 +114,28 @@
             .on("click", click);
 
         nodeEnter.append("circle")
-            .attr("r", 1e-6)
-            .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+            // .attr("r", 1e-6)
+            .attr("r", 7)
+            .style("fill", function(d) {switch (d.type){
+                case "MES":
+                    return "#CD0000";
+                case "TMS":
+                    return "#FF7F50";
+                case "SAP":
+                    return "#F0E68C";
+                case "AMP":
+                    return "#9932CC";
+                case "WMS":
+                    return "#00EE00";
+                case "WMS&SAP":
+                    return "#8B7500";
+                case "maximo":
+                    return "#607B8B";
+                default:
+                    return "#fff";
+            } })
+            .style("stroke", function(d) { return d._children ? "#000000" : "lightsteelblue"; });
+            // .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
         nodeEnter.append("text")
             .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
@@ -116,8 +150,10 @@
             .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
         nodeUpdate.select("circle")
-            .attr("r", 4.5)
-            .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+            .attr("r", 7)
+            .style("stroke-width",3)
+            .style("stroke", function(d) { return d._children ? "#000000" : "lightsteelblue"; });
+            // .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
         nodeUpdate.select("text")
             .style("fill-opacity", 1);
@@ -180,7 +216,7 @@
     }
 
     function dblclick(d) {
-            var name = d.name;
-            window.open(encodeURI("force-v3.html?name="+name),name);//open a new page and send the param name
+        var name = d.name;
+        window.open(encodeURI("force-v3.html?name="+name),name);//open a new page and send the param name
     }
 </script>

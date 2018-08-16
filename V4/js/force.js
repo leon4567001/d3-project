@@ -127,8 +127,7 @@ d3.csv("csv/newdata.csv", function(error, data) {
                     return 6;
             }
         })
-
-
+        // .call(dragBehavior)
         .on("click",function(d){
             //隐藏其它连线上文字
             // text.style("fill-opacity",function(edge){
@@ -185,7 +184,57 @@ d3.csv("csv/newdata.csv", function(error, data) {
         .style("stroke-width",1.5)
         .style("fill",function (d) {
                 switch(d.name){
-                    case title:
+                    case "来料接收":
+                        return "#FF0000";
+                    case "来料检验":
+                        return "#FF0000";
+                    case "来料存储":
+                        return "#FF0000";
+                    case "化工料配置":
+                        return "#FF0000";
+                    case "化工料抽料":
+                        return "#FF0000";
+                    case "日料罐储存":
+                        return "#FF0000";
+                    case "生产准备":
+                        return "#FF0000";
+                    case "清模":
+                        return "#FF0000";
+                    case "喷脱模剂":
+                        return "#FF0000";
+                    case "外协件放置":
+                        return "#FF0000";
+                    case "浇注":
+                        return "#FF0000";
+                    case "熟化":
+                        return "#FF0000";
+                    case "起模":
+                        return "#FF0000";
+                    case "开孔":
+                        return "#FF0000";
+                    case "首检":
+                        return "#FF0000";
+                    case "后道处理":
+                        return "#FF0000";
+                    case "过程检查":
+                        return "#FF0000";
+                    case "上悬挂链料架车摆放":
+                        return "#FF0000";
+                    case "后熟化":
+                        return "#FF0000";
+                    case "终检":
+                        return "#FF0000";
+                    case "产品特性检查":
+                        return "#FF0000";
+                    case "成品包装":
+                        return "#FF0000";
+                    case "成品审核":
+                        return "#FF0000";
+                    case "成品储存":
+                        return "#FF0000";
+                    case "发运":
+                        return "#FF0000";
+                    case "客户需求":
                         return "#FF0000";
                     default:
                         return "#ccc";
@@ -222,10 +271,10 @@ d3.csv("csv/newdata.csv", function(error, data) {
         d3.select(this).classed(d.fixed = true);
     }
     function dblclick(d) {
-        if (d.name==="根节点A"){
+        // if (d.name==="根节点A"){
             var name = d.name;
-            window.open(name+'.html');//open a new page and send the param name as title
-        }
+            window.open('tree/'+name+'.html');//open a new page and send the param name as title
+        // }
     }
 //end
 

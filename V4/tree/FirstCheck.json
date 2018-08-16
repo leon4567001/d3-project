@@ -1,0 +1,10 @@
+{"name":"首检",
+"children":[
+  {"name":"首检",
+  "children":[
+    {"name":"RTY","type":"MES"},
+    {"name":"产品重量检查记录表","type":"MES"},
+    {"name":"电子称校对记录表","type":"MES"},
+    {"name":"发泡试制跟踪表","type":"MES"}
+  ]}
+]}

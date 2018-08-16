@@ -1,0 +1,30 @@
+{"name":"化工料配置",
+"children":[
+  {"name":"配料信息反冲报工",
+  "children":[
+    {"name":"配料记录","type":"MES"},
+    {"name":"自动配制记录","type":"QMS"},
+    {"name":"配料关键参数检查记录","type":"MES"},
+    {"name":"配制记录","type":"QMS"},
+    {"name":"电子秤校正记录","type":"MES"},
+    {"name":"配料房开关机检查记录","type":""},
+    {"name":"配料房流量计量记录","type":""},
+    {"name":"配料关键参数检查记录","type":"MES"},
+    {"name":"配料房区域检查表","type":"MES"},
+    {"name":"配料房中夜班巡检记录表","type":"MES"},
+    {"name":"配料房、料罐站、化工料仓库布局图","type":"MES"},
+    {"name":"冬季保温值班记录","type":"MES"},
+    {"name":"预防性维护点检表","type":"MES"},
+    {"name":"C-13配置记录表","type":"MES"},
+    {"name":"手工配料记录","type":"MES"},
+    {"name":"配料房交接班记录表","type":"MES"},
+    {"name":"化工原料批次使用记录表","type":"WMS"},
+    {"name":"F料跟踪表","type":"WMS"},
+    {"name":"ISO防结晶处理检查表","type":"MES"},
+    {"name":"ISO烘房温度记录表","type":"MES"},
+    {"name":"化学品仓库进出记录表","type":"MES"},
+    {"name":"化学品仓库点检记录表","type":"MES"},
+    {"name":"配料房进出登记表","type":"MES"},
+    {"name":"催化剂桶使用记录表","type":"MES"}
+  ]}
+]}

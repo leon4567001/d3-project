@@ -1,0 +1,17 @@
+{"name":"来料存储",
+"children":[
+  {"name":"化工原料/外协件存储",
+  "children":[
+    {"name":"化工料库存记录","type":"WMS&SAP"},
+    {"name":"库存转储","type":""},
+    {"name":"化工料批次使用记录","type":"WMS"},
+    {"name":"物料库位编码规范","type":"WMS"},
+    {"name":"发泡车间化工料使用有效期汇总表","type":"MES"}
+  ]},
+  {"name":"模具存储",
+  "children":[
+    {"name":"模具清单","type":"MES"},
+    {"name":"固定资产清单","type":"maximo"},
+    {"name":"模具履历表","type":"MES"}
+  ]}
+]}

@@ -1,0 +1,8 @@
+{"name":"化工料抽料",
+"children":[
+  {"name":"化工料抽料",
+  "children":[
+    {"name":"料罐站切换检查表","type":"WMS"},
+    {"name":"ISO移动罐收货抽料检查表","type":"MES"}
+  ]}
+]}

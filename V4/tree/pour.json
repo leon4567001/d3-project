@@ -1,0 +1,29 @@
+{"name":"浇注",
+"children":[
+  {"name":"现场工艺控制",
+  "children":[
+    {"name":"操作报废记录","type":"MES"},
+    {"name":"模架放空记录","type":"MES"},
+    {"name":"现场参数更改记录","type":"MES"},
+    {"name":"流量参数卡","type":"工艺管理"},
+    {"name":"PDE参数卡","type":"工艺管理"},
+    {"name":"工艺参数卡","type":"工艺管理"},
+    {"name":"工艺参数巡检记录表","type":"MES"},
+    {"name":"常规参数检查表","type":"MES"},
+    {"name":"试制记录","type":"MES"}
+  ]},
+  {"name":"SPC",
+  "children":[
+    {"name":"泵能力测试记录表","type":"MES"},
+    {"name":"计量泵线性验证记录表","type":"MES"},
+    {"name":"流量SPC记录","type":"MES"},
+    {"name":"流量计量记录","type":"MES"},
+    {"name":"杯泡记录表","type":"MES"}
+  ]},
+  {"name":"防错",
+  "children":[
+    {"name":"防错清单","type":"TMS"},
+    {"name":"防错布局图","type":"TMS"},
+    {"name":"防错验证记录","type":"TMS"}
+  ]}
+]}
