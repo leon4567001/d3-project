@@ -15,8 +15,10 @@ d3.csv("csv/newdata.csv", function(error, data) {
     // var width = 2100,
     //     height = 2208;
 
-    var width = 2076,
-        height = 2000;
+    // var width = 2076,
+    //     height = 2000;
+    var width = 1650,
+        height = 2100;
 
     nodes = d3.values(nodes);
 
@@ -46,7 +48,7 @@ d3.csv("csv/newdata.csv", function(error, data) {
     force.start();
 
     var svg = d3.select("body").append("svg")
-        .attr("width", width)
+        .attr("width", 1650)
         .attr("height", height);
 
 // Per-type markers, as they don't inherit styles.
