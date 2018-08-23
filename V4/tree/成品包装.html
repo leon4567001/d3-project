@@ -29,7 +29,7 @@
 <h1>树状图:</h1>
 <hr>
 <div>
-    <P>图例说明:</P>
+<P>图例说明:</P>
     <ul>
         <li style="color:#CD0000">MES</li>
         <li style="color:#F0E68C">SAP</li>
@@ -72,7 +72,7 @@
     //     console.log(root);
     // });
 
-    d3.json("delivery.json", function(error, flare) {
+    d3.json("pack.json", function(error, flare) {
         if (error) throw error;
         console.log(flare);
         root = flare;
@@ -114,7 +114,7 @@
             .on("click", click);
 
         nodeEnter.append("circle")
-        // .attr("r", 1e-6)
+            // .attr("r", 1e-6)
             .attr("r", 7)
             .style("fill", function(d) {switch (d.type){
                 case "MES":
@@ -135,7 +135,7 @@
                     return "#fff";
             } })
             .style("stroke", function(d) { return d._children ? "#000000" : "lightsteelblue"; });
-        // .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+            // .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
         nodeEnter.append("text")
             .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
@@ -153,7 +153,7 @@
             .attr("r", 7)
             .style("stroke-width",3)
             .style("stroke", function(d) { return d._children ? "#000000" : "lightsteelblue"; });
-        // .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+            // .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
         nodeUpdate.select("text")
             .style("fill-opacity", 1);

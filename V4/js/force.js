@@ -12,8 +12,11 @@ d3.csv("csv/newdata.csv", function(error, data) {
         link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
     });
 
-    var width = 2100,
-        height = 2208;
+    // var width = 2100,
+    //     height = 2208;
+
+    var width = 2076,
+        height = 2000;
 
     nodes = d3.values(nodes);
 
