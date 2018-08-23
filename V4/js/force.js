@@ -278,7 +278,7 @@ d3.csv("csv/newdata.csv", function(error, data) {
     function dblclick(d) {
         // if (d.name==="根节点A"){
             var name = d.name;
-            window.open('tree/'+name+'.html');//open a new page and send the param name as title
+            window.open('V4/tree/'+name+'.html');//open a new page and send the param name as title
         // }
     }
 //end
