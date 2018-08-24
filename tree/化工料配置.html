@@ -32,12 +32,12 @@
 <P>图例说明:</P>
     <ul>
         <li style="color:#CD0000">MES</li>
-        <li style="color:#F0E68C">SAP</li>
-        <LI style="color:#FF7F50">TMS</LI>
-        <LI style="color:#9932CC">AMP</LI>
+        <!--<li style="color:#F0E68C">SAP</li>-->
+        <LI style="color:#FF7F50">工艺管理</LI>
+        <!--<LI style="color:#9932CC">AMP</LI>-->
         <LI style="color:#00EE00">WMS</LI>
-        <li style="color:#8B7500">WMS&SAP</li>
-        <li style="color:#607B8B">maximo</li>
+        <!--<li style="color:#8B7500">WMS&SAP</li>-->
+        <!--<li style="color:#607B8B">maximo</li>-->
     </ul>
 </div>
 <script>
@@ -72,7 +72,7 @@
     //     console.log(root);
     // });
 
-    d3.json("customer.json", function(error, flare) {
+    d3.json("set.json", function(error, flare) {
         if (error) throw error;
         console.log(flare);
         root = flare;
@@ -119,7 +119,7 @@
             .style("fill", function(d) {switch (d.type){
                 case "MES":
                     return "#CD0000";
-                case "TMS":
+                case "QMS":
                     return "#FF7F50";
                 case "SAP":
                     return "#F0E68C";
@@ -129,7 +129,7 @@
                     return "#00EE00";
                 case "WMS&SAP":
                     return "#8B7500";
-                case "maximo":
+                    case "maximo":
                     return "#607B8B";
                 default:
                     return "#fff";

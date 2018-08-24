@@ -25,7 +25,7 @@
 
 </style>
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="../plu/d3.v3.min.js"></script>
 <h1>树状图:</h1>
 <hr>
 <div>
@@ -72,7 +72,7 @@
     //     console.log(root);
     // });
 
-    d3.json("customer.json", function(error, flare) {
+    d3.json("pack.json", function(error, flare) {
         if (error) throw error;
         console.log(flare);
         root = flare;

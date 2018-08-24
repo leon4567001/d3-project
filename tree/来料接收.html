@@ -25,7 +25,7 @@
 
 </style>
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="../plu/d3.v3.min.js"></script>
 <h1>树状图:</h1>
 <hr>
 <div>
@@ -72,7 +72,7 @@
     //     console.log(root);
     // });
 
-    d3.json("customer.json", function(error, flare) {
+    d3.json("receive.json", function(error, flare) {
         if (error) throw error;
         console.log(flare);
         root = flare;
@@ -110,7 +110,7 @@
         var nodeEnter = node.enter().append("g")
             .attr("class", "node")
             .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-            // .on("dblclick",dblclick)//改为打开文件链接
+            .on("dblclick",dblclick)//改为打开文件链接
             .on("click", click);
 
         nodeEnter.append("circle")
@@ -217,6 +217,7 @@
 
     function dblclick(d) {
         var name = d.name;
-        window.open(encodeURI("force-v3.html?name="+name),name);//open a new page and send the param name
+        // window.open(encodeURI("force-v3.html?name="+name),name);//open a new page and send the param name
+        window.open("../ODS/0037 库存管理工作指导书.pdf");
     }
 </script>

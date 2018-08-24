@@ -33,7 +33,7 @@
     <ul>
         <li style="color:#CD0000">MES</li>
         <li style="color:#F0E68C">SAP</li>
-        <LI style="color:#FF7F50">TMS</LI>
+        <LI style="color:#FF7F50">HRIS</LI>
         <LI style="color:#9932CC">AMP</LI>
         <LI style="color:#00EE00">WMS</LI>
         <li style="color:#8B7500">WMS&SAP</li>
@@ -43,8 +43,8 @@
 <script>
 
     var margin = {top: 20, right: 120, bottom: 20, left: 120},
-        width = 960 - margin.right - margin.left,
-        height = 800 - margin.top - margin.bottom;
+        width = 1800 - margin.right - margin.left,
+        height = 1600 - margin.top - margin.bottom;
 
     var i = 0,
         duration = 750,
@@ -72,7 +72,7 @@
     //     console.log(root);
     // });
 
-    d3.json("customer.json", function(error, flare) {
+    d3.json("production.json", function(error, flare) {
         if (error) throw error;
         console.log(flare);
         root = flare;
