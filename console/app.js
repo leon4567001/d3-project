@@ -75,14 +75,21 @@ app.load = function() {
         });
 
         // default json document
-        var json = {
-            "array": [1, 2, 3],
-            "boolean": true,
-            "null": null,
-            "number": 123,
-            "object": {"a": "b", "c": "d", "e": "f"},
-            "string": "Hello World"
-        };
+        // var json = {
+        //     "array": [1, 2, 3],
+        //     "boolean": true,
+        //     "null": null,
+        //     "number": 123,
+        //     "object": {"a": "b", "c": "d", "e": "f"},
+        //     "string": "Hello World"
+        // };
+        var json = "";
+
+        $.ajaxSetup({async:false});//在$.getJSON方法执行之前将ajax设置成同步
+
+       $.getJSON("../tree/"+paper+".json",function (myjson) {
+           json = myjson;
+       });
 
         // load url if query parameters contains a url
         if (window.QueryParams) {

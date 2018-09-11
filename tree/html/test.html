@@ -25,11 +25,13 @@
 
 </style>
 <body>
-<script src="../plu/d3.v3.min.js"></script>
+<script src="../../plu/d3.v3.min.js"></script>
+<script src="../../V4/plu/jquery-latest.js"></script>
 <h1>树状图:</h1>
+<button id="update">修改</button>
 <hr>
 <div>
-    <P>图例说明:</P>
+<P>图例说明:</P>
     <ul>
         <li style="color:#CD0000">MES</li>
         <li style="color:#F0E68C">SAP</li>
@@ -72,7 +74,7 @@
     //     console.log(root);
     // });
 
-    d3.json("delivery.json", function(error, flare) {
+    d3.json("../test.json", function(error, flare) {
         if (error) throw error;
         console.log(flare);
         root = flare;
@@ -110,11 +112,11 @@
         var nodeEnter = node.enter().append("g")
             .attr("class", "node")
             .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-            // .on("dblclick",dblclick)//改为打开文件链接
+            .on("dblclick",dblclick)//改为打开文件链接
             .on("click", click);
 
         nodeEnter.append("circle")
-        // .attr("r", 1e-6)
+            // .attr("r", 1e-6)
             .attr("r", 7)
             .style("fill", function(d) {switch (d.type){
                 case "MES":
@@ -135,7 +137,7 @@
                     return "#fff";
             } })
             .style("stroke", function(d) { return d._children ? "#000000" : "lightsteelblue"; });
-        // .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+            // .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
         nodeEnter.append("text")
             .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
@@ -153,7 +155,7 @@
             .attr("r", 7)
             .style("stroke-width",3)
             .style("stroke", function(d) { return d._children ? "#000000" : "lightsteelblue"; });
-        // .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+            // .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
         nodeUpdate.select("text")
             .style("fill-opacity", 1);
@@ -212,11 +214,20 @@
             d.children = d._children;
             d._children = null;
         }
-        update(d);
+        update(d)
     }
 
+    //修改按钮
+    $("#update").click(function () {
+        // alert("postive!")
+        var name = '来料接收';
+        window.open(encodeURI("../../console/index.html?name="+name),name);
+    });
+
     function dblclick(d) {
-        var name = d.name;
-        window.open(encodeURI("force-v3.html?name="+name),name);//open a new page and send the param name
+        // var name = d.name;
+        // window.open(encodeURI("force-v3.html?name="+name),name);//open a new page and send the param name
+        window.open("../ODS/0007 常规产品生产转移工作指导书.pdf");
     }
+
 </script>

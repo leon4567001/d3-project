@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 
-    <title>JSON格式化工具 - 在线查看, 编辑和格式化工具</title>
+    <title>JSON编辑用户界面</title>
 	<meta name="description" content="JSON格式化工具是一款基于web的视图工具，你可以在线编辑和格式化JSON数据，格式化后的JSON数据以树形结构展示，更易于阅读。">
     <meta name="keywords" content="JSON格式化工具,json格式化,	json在线解析,json字符串格式化">
      <!-- <link rel="shortcut icon" href="favicon.ico"> -->
@@ -44,6 +44,9 @@
     <script type="text/javascript" src="lib/ace/theme-textmate.js"></script>
     <script type="text/javascript" src="lib/ace/theme-jsoneditor.js"></script>
 
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="../js/jquery-latest.js"></script>
+
     <style type="text/css">
         div.convert-right {
             background: url('jsoneditor/css/img/jsoneditor-icons.png') -0 -48px;
@@ -52,6 +55,25 @@
             background: url('jsoneditor/css/img/jsoneditor-icons.png') -24px -48px;
         }
     </style>
+    <script>
+        function GetRequest() {
+            var url =decodeURI(decodeURI(location.search)); //获取url中"?"符后的字串，使用了两次
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for(var i = 0; i < strs.length; i ++) {
+                    theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+        var Request = new Object();
+        Request = GetRequest();
+        var paper;
+        paper = Request["name"];
+        console.log(paper);
+    </script>
 </head>
 
 <body>

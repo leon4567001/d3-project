@@ -124,12 +124,14 @@ AppendNode.prototype.showContextMenu = function (anchor, onClose) {
     var items = [
         // create append button
         {
-            'text': 'Append',
-            'title': 'Append a new field with type \'auto\' (Ctrl+Shift+Ins)',
+            'text': '新增',
+            // 'title': 'Append a new field with type \'auto\' (Ctrl+Shift+Ins)',
+            'title': '新增一个节点',
             'submenuTitle': 'Select the type of the field to be appended',
             'className': 'insert',
             'click': function () {
                 node._onAppend('name', '', 'auto');
+                // node._onInsertBefore('', {});
             },
             'submenu': [
                 {
