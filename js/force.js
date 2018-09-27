@@ -1,6 +1,6 @@
 d3.csv("csv/newdata.csv", function(error, data) {
     if (error) throw error;
-    // console.log(data);
+        console.log(data);
 
     //start
     var	links = data;
@@ -12,11 +12,6 @@ d3.csv("csv/newdata.csv", function(error, data) {
         link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
     });
 
-    // var width = 2100,
-    //     height = 2208;
-
-    // var width = 2076,
-    //     height = 2000;
     var width = 1650,
         height = 2100;
 

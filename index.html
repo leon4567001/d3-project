@@ -65,24 +65,25 @@
         }
 
     </style>
-    <script>
-        function GetRequest() {
-            var url =decodeURI(decodeURI(location.search)); //获取url中"?"符后的字串，使用了两次
-            var theRequest = new Object();
-            if (url.indexOf("?") != -1) {
-                var str = url.substr(1);
-                strs = str.split("&");
-                for(var i = 0; i < strs.length; i ++) {
-                    theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
-                }
-            }
-            return theRequest;
-        }
-        var Request = new Object();
-        Request = GetRequest();
-        var title;
-        title = Request["name"];
-    </script>
+    <!--用来获取标题名称-->
+    <!--<script>-->
+        <!--function GetRequest() {-->
+            <!--var url =decodeURI(decodeURI(location.search)); //获取url中"?"符后的字串，使用了两次-->
+            <!--var theRequest = new Object();-->
+            <!--if (url.indexOf("?") != -1) {-->
+                <!--var str = url.substr(1);-->
+                <!--strs = str.split("&");-->
+                <!--for(var i = 0; i < strs.length; i ++) {-->
+                    <!--theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);-->
+                <!--}-->
+            <!--}-->
+            <!--return theRequest;-->
+        <!--}-->
+        <!--var Request = new Object();-->
+        <!--Request = GetRequest();-->
+        <!--var title;-->
+        <!--title = Request["name"];-->
+    <!--</script>-->
     <script src="V4/plu/jquery.js"></script>
     <script src="V4/plu/jquery-latest.js"></script>
     <script src="V4/plu/d3.v3.min.js"></script>
